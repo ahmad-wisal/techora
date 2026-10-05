@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background: linear-gradient(180deg, #050816 0%, #060a1a 45%, #050816 100%);
+  color: #f4f8ff;
+}
+
+main {
+  overflow: clip;
+}
+
+.hero-glow {
+  background:
+    radial-gradient(circle at 22% 5%, rgba(76, 155, 255, 0.2), transparent 38%),
+    radial-gradient(circle at 85% 8%, rgba(82, 210, 255, 0.12), transparent 30%);
+}
+
+.tech-grid {
+  background-image:
+    linear-gradient(rgba(145, 179, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(145, 179, 255, 0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(circle at center, black 55%, transparent 92%);
+}
+
+.cta-bg {
+  position: relative;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(80, 148, 255, 0.2), transparent 35%),
+    radial-gradient(circle at 84% 0%, rgba(67, 225, 255, 0.18), transparent 40%),
+    linear-gradient(140deg, #0a1020 0%, #0d1426 100%);
+}
+
+.cta-bg::after {
+  content: "";
+  position: absolute;
+  inset: -40% -10%;
+  background: linear-gradient(120deg, transparent 35%, rgba(88, 184, 255, 0.13) 50%, transparent 65%);
+  animation: ctaShift 14s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ctaShift {
+  from {
+    transform: translateX(-22%);
+  }
+  to {
+    transform: translateX(22%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
