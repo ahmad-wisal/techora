@@ -1,13 +1,22 @@
-# techora
+# Techora Homepage
 
-Techora Next.js app configured for GitHub Pages deployment.
+This repository contains the Techora homepage built with Next.js (App Router), reusable React components, and static export support for GitHub Pages.
 
 ## Live URL
 
 - https://ahmad-wisal.github.io/techora/
 
-## GitHub Pages setup
+## Local development
 
-1. In the repository, go to **Settings → Pages**.
-2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-3. Push to `main` (or run the workflow manually) to deploy.
+```bash
+npm ci
+npm run dev
+```
+
+## Production build (static export)
+
+```bash
+npm run build
+```
+
+The production build exports static files to `out/` and is configured for the `/techora` base path used by the GitHub Pages project site.
