@@ -8,6 +8,7 @@ const steps = ["IDEA", "STRATEGY", "DESIGN", "BUILD", "LAUNCH", "GROW"];
 export default function Process() {
   const reduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const refs = useRef([]);
 
   useEffect(() => {
@@ -28,7 +29,8 @@ export default function Process() {
     return () => observer.disconnect();
   }, []);
 
-  const progress = `${(activeIndex / (steps.length - 1)) * 100}%`;
+  const progressIndex = hoveredIndex ?? activeIndex;
+  const progress = `${(progressIndex / (steps.length - 1)) * 100}%`;
 
   return (
     <section id="process" className="px-4 py-20">
@@ -43,7 +45,8 @@ export default function Process() {
             <div className="relative mb-8 h-1 rounded bg-white/10">
               <motion.div
                 className="h-full rounded bg-gradient-to-r from-blue-400 to-cyan-300"
-                animate={reduceMotion ? { width: "100%" } : { width: progress }}
+                animate={{ width: progress }}
+                transition={{ duration: reduceMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }}
               />
             </div>
             <ol className="grid grid-cols-6 gap-3" aria-label="TECHORA process">
@@ -56,8 +59,12 @@ export default function Process() {
                       refs.current[index] = el;
                     }}
                     data-index={index}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    onFocus={() => setHoveredIndex(index)}
+                    onBlur={() => setHoveredIndex(null)}
                     className={`rounded-xl border p-4 transition ${
-                      active
+                      index <= progressIndex
                         ? "border-cyan-300/40 bg-cyan-300/10 text-white"
                         : "border-white/10 bg-[#101a31] text-[#8FA0C0]"
                     }`}
@@ -74,7 +81,8 @@ export default function Process() {
             <div className="absolute bottom-0 left-[15px] top-0 w-px bg-white/15" />
             <motion.div
               className="absolute left-[15px] top-0 w-px bg-gradient-to-b from-blue-400 to-cyan-300"
-              animate={reduceMotion ? { height: "100%" } : { height: progress }}
+              animate={{ height: progress }}
+              transition={{ duration: reduceMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }}
             />
             <ol className="space-y-3" aria-label="TECHORA process mobile">
               {steps.map((step, index) => {

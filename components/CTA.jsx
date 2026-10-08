@@ -1,4 +1,7 @@
 import { ArrowRight } from "lucide-react";
+import ProjectPlanner from "./ProjectPlanner";
+
+const contactEmail = "wisalahmadswb@gmail.com";
 
 export default function CTA() {
   return (
@@ -16,19 +19,23 @@ export default function CTA() {
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a
-            href="mailto:hello@techora.co"
+            href={`mailto:${contactEmail}?subject=Start%20a%20Techora%20project`}
             className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 px-5 py-3 text-sm font-medium text-[#07122a]"
           >
             Start a Project
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="mailto:hello@techora.co?subject=Talk%20to%20Techora"
+            href={`mailto:${contactEmail}?subject=Talk%20to%20Techora`}
             className="inline-flex items-center rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-medium text-white hover:bg-white/10"
           >
             Talk to Techora
           </a>
         </div>
+        <ProjectPlanner />
+        <a href={`mailto:${contactEmail}`} className="mt-5 inline-block text-sm text-[#A9B4CF] transition hover:text-cyan-200">
+          {contactEmail}
+        </a>
       </div>
     </section>
   );
